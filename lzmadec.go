@@ -1,4 +1,4 @@
-package lzmadec
+package 7z
 
 import (
 	"bufio"
