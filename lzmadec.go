@@ -1,4 +1,4 @@
-package 7z
+package un7z
 
 import (
 	"bufio"

@@ -1,3 +1,3 @@
-module github.com/wowqhb/7z
+module github.com/wowqhb/un7z
 
 go 1.15
