@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/wowqhb/7z"
+	lzmadec "github.com/wowqhb/7z"
 )
 
 func usageAndExit() {
