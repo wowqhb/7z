@@ -1,1 +1,3 @@
-module github.com/kjk/lzmadec
+module github.com/wowqhb/lzmadec
+
+go 1.15
