@@ -214,7 +214,7 @@ func newArchive(path string, password *string) (*Archive, error) {
 	} else {
 		tmpPassword = *password
 	}
-	params = append(params, fmt.Sprintf("-p%s", tmpPassword))
+	params = append(params, "-O", "cp936", fmt.Sprintf("-p%s", tmpPassword))
 	params = append(params, path)
 	cmd := exec.Command("7z", params...)
 	out, err := cmd.Output()
@@ -265,7 +265,7 @@ func (a *Archive) GetFileReader(name string) (io.ReadCloser, error) {
 
 	params := []string{"x", "-so"}
 	if a.password != nil {
-		params = append(params, fmt.Sprintf("-p%s", *a.password))
+		params = append(params, "-O", "cp936", fmt.Sprintf("-p%s", *a.password))
 	}
 	params = append(params, a.Path, name)
 
