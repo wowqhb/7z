@@ -202,7 +202,7 @@ func newArchive(path string, password *string) (*Archive, error) {
 		return nil, err
 	}
 
-	params := []string{"l", "-slt", "-sccUTF-8"}
+	params := []string{"-O", "cp936", "l", "-slt", "-sccUTF-8"}
 	var tmpPassword string
 	if password == nil || *password == "" {
 		// 7z interactively asks for a password when an archive is encrypted
@@ -214,7 +214,7 @@ func newArchive(path string, password *string) (*Archive, error) {
 	} else {
 		tmpPassword = *password
 	}
-	params = append(params, "-O", "cp936", fmt.Sprintf("-p%s", tmpPassword))
+	params = append(params, fmt.Sprintf("-p%s", tmpPassword))
 	params = append(params, path)
 	cmd := exec.Command("7z", params...)
 	out, err := cmd.Output()
@@ -263,9 +263,9 @@ func (a *Archive) GetFileReader(name string) (io.ReadCloser, error) {
 		return nil, errors.New("file not in the archive")
 	}
 
-	params := []string{"x", "-so"}
+	params := []string{"-O", "cp936", "x", "-so"}
 	if a.password != nil {
-		params = append(params, "-O", "cp936", fmt.Sprintf("-p%s", *a.password))
+		params = append(params, fmt.Sprintf("-p%s", *a.password))
 	}
 	params = append(params, a.Path, name)
 
